@@ -115,6 +115,12 @@ Image published to Docker Hub:
 
 ![image](https://github.com/user-attachments/assets/6feb02cc-8db1-4d8e-be32-12fa6489d021)
 
+This command:
+
+- Installs if not already installed.
+
+- Upgrades the deployment if already exists.
+
 Access the app:
 
 ```bash
