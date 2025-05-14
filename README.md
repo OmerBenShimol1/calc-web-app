@@ -60,7 +60,7 @@ docker build -f Dockerfile.app -t omerbs/calcapp .
 
 ---
 
-## 5. Jenkins CI Pipeline
+## 5. Jenkins Pipeline
 
 ### 5.1 Jenkins Custom Docker Image
 
