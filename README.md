@@ -97,6 +97,7 @@ tests XML file archived:
 ![image](https://github.com/user-attachments/assets/de21af45-f108-4eb3-bef8-824ce3e9079c)
 
 Image published to Docker Hub:
+
 ![image](https://github.com/user-attachments/assets/06303ee3-b89a-4724-951a-ac1faa8b514c)
 
 
