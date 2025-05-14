@@ -22,8 +22,6 @@ RUN apt-get update && \
     apt-get install -y docker-ce-cli && \
     apt-get clean
 
-# 📦 הוסף את Jenkins לקבוצת docker (חשוב אם אתה עובד עם docker.sock)
 RUN usermod -aG docker jenkins
 
-# 👤 חזור למשתמש Jenkins
 USER jenkins
