@@ -33,13 +33,7 @@ Spring Boot application main class (`@SpringBootApplication`).
   * Spring Boot dependencies
   * JUnit 5
   * Maven Surefire plugin
-  * Maven compiler plugin with `-parameters`
-
-Build command:
-
-```bash
-mvn clean package
-```
+  * Maven compiler plugin
 
 ---
 
@@ -51,12 +45,6 @@ Multi-stage Dockerfile:
 
 * Stage 1: Builds the JAR using Maven
 * Stage 2: Copies the JAR into a lightweight Eclipse Temurin runtime image
-
-Build the image:
-
-```bash
-docker build -f Dockerfile.app -t omerbs/calcapp .
-```
 
 ---
 
@@ -111,12 +99,6 @@ Image published to Docker Hub:
 * Uses the published Docker image from Docker Hub
 * Exposes port 8081
 
-Run:
-
-```bash
-docker-compose up --build
-```
-
 ![image](https://github.com/user-attachments/assets/4b94366b-e056-4fc3-a71a-fa434ee8e20f)
 
 ![image](https://github.com/user-attachments/assets/a70620c9-0081-429a-b555-767c5b94a195)
@@ -130,12 +112,6 @@ docker-compose up --build
 * Templates for `deployment.yaml` and `service.yaml`
 * Uses `NodePort` service (no Ingress)
 * Configurable via `values.yaml`
-
-Install:
-
-```bash
-helm upgrade --install calcapp ./calcapp-chart
-```
 
 ![image](https://github.com/user-attachments/assets/6feb02cc-8db1-4d8e-be32-12fa6489d021)
 
