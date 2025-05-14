@@ -1,0 +1,7 @@
+
+services:
+  calcapp:
+    image: omerbs/calcapp:latest
+    container_name: calcapp
+    ports:
+      - "8081:8081"
