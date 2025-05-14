@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: omerbs/calcapp
+  tag: latest
+  pullPolicy: IfNotPresent
+
+containerPort: 8081
+
+service:
+  type: NodePort
+  port: 8081
+
+ingress:
+  enabled: false
