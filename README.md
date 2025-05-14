@@ -87,6 +87,7 @@ Test results:
 ![image](https://github.com/user-attachments/assets/a725418e-2f0a-4838-b9e4-7a157939a67a)
 
 Docker Image publishing process:
+
 ![image](https://github.com/user-attachments/assets/d0e5e5fc-c78d-4ff1-a9f8-bbe4a28d6777)
 
 ![image](https://github.com/user-attachments/assets/3daa987e-590a-4a3a-b284-7deca859c5c3)
@@ -135,6 +136,7 @@ Install:
 ```bash
 helm upgrade --install calcapp ./calcapp-chart
 ```
+
 ![image](https://github.com/user-attachments/assets/6feb02cc-8db1-4d8e-be32-12fa6489d021)
 
 Access the app:
@@ -142,6 +144,7 @@ Access the app:
 ```bash
 http://localhost:<NodePort>/api/calculate?a=5&b=3&op=*
 ```
+
 ![image](https://github.com/user-attachments/assets/9accd13e-ebb7-4e5f-9d15-ab8911703747)
 
 
