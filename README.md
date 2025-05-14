@@ -1,4 +1,4 @@
-# Spring Boot Calculator App - CI/CD and Kubernetes Deployment
+# Calculator App
 
 ## 1. Java Spring Boot Web Calculator Application
 
@@ -100,10 +100,6 @@ Image published to Docker Hub:
 ![image](https://github.com/user-attachments/assets/06303ee3-b89a-4724-951a-ac1faa8b514c)
 
 
-
-
-
-
 ---
 
 ## 6. Docker Compose Deployment
@@ -157,19 +153,6 @@ Change a, b, op values in the URL.
 ## Notes:
 
 * NodePort is used to expose the app locally on Docker Desktop
-* No Ingress or domain name is configured
-* The Helm chart supports value overrides for flexibility
 
----
 
-## Summary
 
-This project demonstrates:
-
-* A RESTful Spring Boot calculator app
-* Unit testing with JUnit 5
-* CI/CD pipeline with Jenkins and Docker
-* Containerized deployment using Docker Compose
-* Kubernetes deployment via Helm (no Ingress, NodePort only)
-
-Ready for end-to-end deployment from code to cluster.
