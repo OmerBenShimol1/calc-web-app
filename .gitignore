@@ -1,0 +1,29 @@
+# Maven target directory
+/target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Java class files
+*.class
+
+# Build output
+/build/
+
+# IDE auto-save
+*.swp
+*.swo
+
+# Local env files
+.env
