@@ -1,0 +1,12 @@
+.gradle/
+build/
+target/
+out/
+.git/
+.gitignore
+.idea/
+.vscode/
+**/*.iml
+Dockerfile
+docker-compose.yaml
+

@@ -1,7 +1,13 @@
-
 services:
-  calcapp:
-    image: omerbs/calcapp:latest
-    container_name: calcapp
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: omerbs/calcapp:gradle
     ports:
       - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=default
+      - JAVA_OPTS=-Xms256m -Xmx512m
+    restart: unless-stopped
+

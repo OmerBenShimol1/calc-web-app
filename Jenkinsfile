@@ -1,11 +1,17 @@
 pipeline {
     agent any
 
+    options {
+        timestamps()
+        ansiColor('xterm')
+    }
+
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
         DOCKER_IMAGE = 'omerbs/calcapp'
-        DOCKER_TAG = 'latest'
+        DOCKER_TAG   = 'latest'
         DOCKERFILE_PATH = 'Dockerfile.app'
+        GRADLE_USER_HOME = "${env.WORKSPACE}@gradle"
     }
 
     stages {
@@ -15,10 +21,26 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Build and Test (Gradle)') {
             steps {
-                sh 'mvn clean test'
-                junit 'target/surefire-reports/*.xml'
+                sh './gradlew clean test --no-daemon'
+            }
+            post {
+                always {
+                    
+                    junit 'build/test-results/test/*.xml'
+                }
+            }
+        }
+
+        stage('Package (bootJar)') {
+            steps {
+                sh './gradlew bootJar --no-daemon'
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+                }
             }
         }
 
@@ -49,7 +71,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/surefire-reports/*.xml', allowEmptyArchive: true
+            sh 'docker images --format "table {{.Repository}}\\t{{.Tag}}\\t{{.ID}}\\t{{.Size}}" || true'
         }
     }
 }
