@@ -7,10 +7,10 @@ pipeline {
 
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
-        DOCKER_IMAGE = 'omerbs/calcapp'
-        DOCKER_TAG   = 'latest'
-        DOCKERFILE_PATH = 'Dockerfile.app'
-        GRADLE_USER_HOME = "${env.WORKSPACE}@gradle"
+        DOCKER_IMAGE          = 'omerbs/calcapp'
+        DOCKER_TAG            = 'latest'          // latest = גרסת Gradle
+        DOCKERFILE_PATH       = 'Dockerfile.app'
+        GRADLE_USER_HOME      = "${env.WORKSPACE}@gradle"  // קאש לבניות מהירות
     }
 
     stages {
@@ -21,18 +21,19 @@ pipeline {
         }
 
         stage('Build and Test (Gradle)') {
+            agent { label 'gradle' }
             steps {
                 sh './gradlew clean test --no-daemon'
             }
             post {
                 always {
-                    
                     junit 'build/test-results/test/*.xml'
                 }
             }
         }
 
         stage('Package (bootJar)') {
+            agent { label 'gradle' }
             steps {
                 sh './gradlew bootJar --no-daemon'
             }
