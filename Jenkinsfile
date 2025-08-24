@@ -8,20 +8,33 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
         DOCKER_IMAGE          = 'omerbs/calcapp'
-        DOCKER_TAG            = 'latest'          // latest = גרסת Gradle
+        DOCKER_TAG            = 'latest'
         DOCKERFILE_PATH       = 'Dockerfile.app'
-        GRADLE_USER_HOME      = "${env.WORKSPACE}@gradle"  // קאש לבניות מהירות
     }
 
     stages {
-        stage('Clone repository') {
+        stage('Checkout (on gradle agent)') {
+            agent { label 'gradle' }
             steps {
                 git branch: 'main', url: 'https://github.com/OmerBenShimol1/calc-web-app.git'
             }
         }
 
+        stage('Prepare Gradle Env') {
+            agent { label 'gradle' }
+            environment {
+                GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
+            }
+            steps {
+                sh 'mkdir -p "$GRADLE_USER_HOME"'
+            }
+        }
+
         stage('Build and Test (Gradle)') {
             agent { label 'gradle' }
+            environment {
+                GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
+            }
             steps {
                 sh './gradlew clean test --no-daemon'
             }
@@ -34,6 +47,9 @@ pipeline {
 
         stage('Package (bootJar)') {
             agent { label 'gradle' }
+            environment {
+                GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
+            }
             steps {
                 sh './gradlew bootJar --no-daemon'
             }
@@ -45,12 +61,14 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when { beforeAgent true; expression { false } } // disabled for now
             steps {
                 sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} -f ${DOCKERFILE_PATH} ."
             }
         }
 
         stage('Push to Docker Hub') {
+            when { beforeAgent true; expression { false } } // disabled for now
             steps {
                 withCredentials([
                     usernamePassword(
