@@ -10,6 +10,7 @@ pipeline {
         DOCKER_IMAGE          = 'omerbs/calcapp'
         DOCKER_TAG            = 'latest'
         DOCKERFILE_PATH       = 'Dockerfile.app'
+        GRADLE_USER_HOME = "/home/jenkins/.gradle"
     }
 
     stages {
